@@ -20,9 +20,11 @@ void GPIO_PIN_Write(GPIO_TypeDef* PORT,uint32_t MASK,uint8_t value) {
 
 void LED1_Init() {
 	//Write code for initializing LED1.
+	LED1_PORT->DIR |= (1 << 18);
 }
 
 void LED2_Init() {
+	LED2_PORT->DIR |= (1 << 13);
 	//Write code for initializing LED2.
 }
 
@@ -35,11 +37,14 @@ void LED4_Init() {
 }
 
 void LED1_Off() {
+	LED1_PORT->PIN |= (1 << 18);
 	//Write code for turning off LED1.
+	
 }
 
 void LED2_Off() {
 	//Write code for turning off LED2.
+		LED2_PORT->PIN |= (1 << 13);
 }
 
 void LED3_Off() {
@@ -52,9 +57,11 @@ void LED4_Off() {
 
 void LED1_On() {
 	//Write code for turning on LED1.
+		LED1_PORT->PIN &= ~(1 << 18);
 }
 
 void LED2_On() {
+	LED2_PORT->PIN &= ~(1 << 13);
 	//Write code for turning on LED2.
 }
 

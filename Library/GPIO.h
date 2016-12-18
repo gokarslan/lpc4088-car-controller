@@ -40,15 +40,13 @@ typedef enum {
 #define PORT4_BASE		(GPIO_ADDRESS + 0x080)
 #define PORT5_BASE		(GPIO_ADDRESS + 0x0A0)
 
-#define PORTX	((GPIO_TypeDef*) 0x00)
-#define X			0x00
 
 //Write Correct Port and Mask values.
-#define LED1_PORT			PORTX
-#define LED1_MASK			((uint32_t) 1 << X)
+#define LED1_PORT			PORT1
+#define LED1_MASK			((uint32_t) 1 << 18)
 
-#define LED2_PORT			PORTX
-#define LED2_MASK			((uint32_t) 1 << X)
+#define LED2_PORT			PORT0
+#define LED2_MASK			((uint32_t) 1 << 13)
 
 #define LED3_PORT			PORTX
 #define LED3_MASK			((uint32_t) 1 << X)

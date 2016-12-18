@@ -31,6 +31,23 @@ void init() {
 //Check the system by using the Slot Car.
 
 void update() {
+	if(ultrasonicSensorNewDataAvailable){
+		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
+		if(ultrasonicSensorDistance < 10){
+			LED1_Off();
+			LED2_Off();
+		}else{
+			LED1_On();
+			LED2_Off();
+		}
+					
+		
+	}else{
+		LED1_On();
+		LED2_On();
+	}
+	
+
 }
 
 int main() {
@@ -38,10 +55,10 @@ int main() {
 	__enable_irq();
 	
 	while(ultrasonicSensorNewDataAvailable == 0){}
-	
+	LED1_On();
 	while(1) {
 		update();
-		__WFI();
-	}
+		//__WFI();
+	                                    }
 }
 

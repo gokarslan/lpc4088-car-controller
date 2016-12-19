@@ -1,9 +1,11 @@
 #include "LPC407x_8x_177x_8x.h"
-
 #include "Library/Ultrasonic.h"
 #include "Library/SystemStructures.h"
 #include "Library/Timer.h"
 #include "Library/LCD.h"
+#include "Library/Serial.h"
+
+#include <stdio.h>
 void init() {
 	Ultrasonic_Init();
 	Ultrasonic_Trigger_Timer_Init();
@@ -20,33 +22,29 @@ void init() {
 	LED4_Off();
 	
 	Ultrasonic_Start_Trigger_Timer();
+
+	Serial_Init();
 }
 
-//Calculate distance from duration. (Also write the formula to paper)
-//When Ultrasonic Sensor detects obstacles which are closer than 7cm, turn on all the LEDs.
-//When Ultrasonic Sensor detects obstacles which are in the range of 7cm and 12cm , turn on LED1, LED2 and LED3.
-//When Ultrasonic Sensor detects obstacles which are in the range of 12cm and 20cm , turn on LED1 and LED2.
-//When Ultrasonic Sensor detects obstacles which are in the range of 20cm and 30cm , turn on LED1.
-//When Ultrasonic Sensor detects obstacles which are far from 30 cm, turn off all the LEDs.
-//Check the system by using the Slot Car.
 
 void update() {
 	if(ultrasonicSensorNewDataAvailable){
+		char temp[20];
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
 		if(ultrasonicSensorDistance < 10){
-			LCD_write("<10");
+			//LCD_write("<10");
 			LED1_Off();
 			LED2_Off();
 		}else{
-			LCD_write(">=10");
+			//LCD_write(">=10");
 			LED1_On();
-			LED2_Off();
+			LED2_On();
 		}
-					
 		
-	}else{
-		LED1_On();
-		LED2_On();
+		sprintf(temp, "Distance:%d\r\n", ultrasonicSensorDistance);
+		serialTransmitData = temp;
+		Serial_WriteData(*serialTransmitData++);
+		while(!serialTransmitCompleted);
 	}
 	
 

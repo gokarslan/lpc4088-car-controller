@@ -419,6 +419,21 @@
               <FileType>1</FileType>
               <FilePath>.\Library\LCD.c</FilePath>
             </File>
+            <File>
+              <FileName>Serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\Serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>MMA7455.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\MMA7455.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

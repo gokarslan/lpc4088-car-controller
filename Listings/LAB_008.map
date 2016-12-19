@@ -4,6 +4,10 @@ Component: ARM Compiler 5.06 update 3 (build 300) Tool: armlink [4d35c9]
 
 Section Cross References
 
+    main.o(i.init) refers to mma7455.o(i.MMA7455_Init) for MMA7455_Init
+    main.o(i.init) refers to mma7455.o(i.MMA7455_setMode) for MMA7455_setMode
+    main.o(i.init) refers to mma7455.o(i.MMA7455_calibrate) for MMA7455_calibrate
+    main.o(i.init) refers to serial.o(i.Serial_Init) for Serial_Init
     main.o(i.init) refers to ultrasonic.o(i.Ultrasonic_Init) for Ultrasonic_Init
     main.o(i.init) refers to ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init) for Ultrasonic_Trigger_Timer_Init
     main.o(i.init) refers to timer.o(i.Ultrasonic_Capture_Timer_Init) for Ultrasonic_Capture_Timer_Init
@@ -16,18 +20,13 @@ Section Cross References
     main.o(i.init) refers to gpio.o(i.LED3_Off) for LED3_Off
     main.o(i.init) refers to gpio.o(i.LED4_Off) for LED4_Off
     main.o(i.init) refers to ultrasonic.o(i.Ultrasonic_Start_Trigger_Timer) for Ultrasonic_Start_Trigger_Timer
-    main.o(i.init) refers to serial.o(i.Serial_Init) for Serial_Init
     main.o(i.main) refers to main.o(i.init) for init
     main.o(i.main) refers to gpio.o(i.LED1_On) for LED1_On
     main.o(i.main) refers to main.o(i.update) for update
-    main.o(i.main) refers to ultrasonic.o(.data) for ultrasonicSensorNewDataAvailable
-    main.o(i.update) refers to gpio.o(i.LED1_Off) for LED1_Off
-    main.o(i.update) refers to gpio.o(i.LED2_Off) for LED2_Off
-    main.o(i.update) refers to gpio.o(i.LED1_On) for LED1_On
-    main.o(i.update) refers to gpio.o(i.LED2_On) for LED2_On
+    main.o(i.update) refers to mma7455.o(i.MMA7455_read) for MMA7455_read
     main.o(i.update) refers to printf1.o(i.__0sprintf$1) for __2sprintf
     main.o(i.update) refers to serial.o(i.Serial_WriteData) for Serial_WriteData
-    main.o(i.update) refers to ultrasonic.o(.data) for ultrasonicSensorNewDataAvailable
+    main.o(i.update) refers to wait.o(i.wait) for wait
     main.o(i.update) refers to serial.o(.data) for serialTransmitData
     ultrasonic.o(i.TIMER2_IRQHandler) refers to ultrasonic.o(.data) for ultrasonicSensorTriggerStart
     timer.o(i.TIMER3_IRQHandler) refers to ultrasonic.o(.data) for ultrasonicSensorCaptureRisingEdge
@@ -59,6 +58,33 @@ Section Cross References
     serial.o(i.UART0_IRQHandler) refers to serial.o(i.Serial_ReadData) for Serial_ReadData
     serial.o(i.UART0_IRQHandler) refers to serial.o(i.Serial_WriteData) for Serial_WriteData
     serial.o(i.UART0_IRQHandler) refers to serial.o(.data) for serialReceivedCharacter
+    i2c.o(i.I2C_DoRead) refers to i2c.o(i.I2C_Wait_SI) for I2C_Wait_SI
+    i2c.o(i.I2C_DoWrite) refers to i2c.o(i.I2C_Wait_SI) for I2C_Wait_SI
+    i2c.o(i.I2C_Read) refers to i2c.o(i.I2C_ReadData) for I2C_ReadData
+    i2c.o(i.I2C_ReadData) refers to i2c.o(i.I2C_Start) for I2C_Start
+    i2c.o(i.I2C_ReadData) refers to i2c.o(i.I2C_Stop) for I2C_Stop
+    i2c.o(i.I2C_ReadData) refers to i2c.o(i.I2C_DoWrite) for I2C_DoWrite
+    i2c.o(i.I2C_ReadData) refers to i2c.o(i.I2C_DoRead) for I2C_DoRead
+    i2c.o(i.I2C_Start) refers to i2c.o(i.I2C_Wait_SI) for I2C_Wait_SI
+    i2c.o(i.I2C_Write) refers to i2c.o(i.I2C_WriteData) for I2C_WriteData
+    i2c.o(i.I2C_WriteData) refers to i2c.o(i.I2C_Start) for I2C_Start
+    i2c.o(i.I2C_WriteData) refers to i2c.o(i.I2C_Stop) for I2C_Stop
+    i2c.o(i.I2C_WriteData) refers to i2c.o(i.I2C_DoWrite) for I2C_DoWrite
+    mma7455.o(i.MMA7455_Init) refers to i2c.o(i.I2C_Init) for I2C_Init
+    mma7455.o(i.MMA7455_calibrate) refers to mma7455.o(i.MMA7455_read) for MMA7455_read
+    mma7455.o(i.MMA7455_calibrate) refers to wait.o(i.wait) for wait
+    mma7455.o(i.MMA7455_calibrate) refers to mma7455.o(.data) for xOffset
+    mma7455.o(i.MMA7455_getModeControl) refers to i2c.o(i.I2C_Write) for I2C_Write
+    mma7455.o(i.MMA7455_getModeControl) refers to i2c.o(i.I2C_Read) for I2C_Read
+    mma7455.o(i.MMA7455_getStatus) refers to i2c.o(i.I2C_Write) for I2C_Write
+    mma7455.o(i.MMA7455_getStatus) refers to i2c.o(i.I2C_Read) for I2C_Read
+    mma7455.o(i.MMA7455_read) refers to mma7455.o(i.MMA7455_getStatus) for MMA7455_getStatus
+    mma7455.o(i.MMA7455_read) refers to i2c.o(i.I2C_Write) for I2C_Write
+    mma7455.o(i.MMA7455_read) refers to i2c.o(i.I2C_Read) for I2C_Read
+    mma7455.o(i.MMA7455_read) refers to mma7455.o(.data) for xOffset
+    mma7455.o(i.MMA7455_setMode) refers to mma7455.o(i.MMA7455_getModeControl) for MMA7455_getModeControl
+    mma7455.o(i.MMA7455_setMode) refers to mma7455.o(i.MMA7455_setModeControl) for MMA7455_setModeControl
+    mma7455.o(i.MMA7455_setModeControl) refers to i2c.o(i.I2C_Write) for I2C_Write
     startup_lpc407x_8x_177x_8x.o(RESET) refers to startup_lpc407x_8x_177x_8x.o(STACK) for __initial_sp
     startup_lpc407x_8x_177x_8x.o(RESET) refers to startup_lpc407x_8x_177x_8x.o(.text) for Reset_Handler
     startup_lpc407x_8x_177x_8x.o(RESET) refers to ultrasonic.o(i.TIMER2_IRQHandler) for TIMER2_IRQHandler
@@ -342,17 +368,18 @@ Removing Unused input sections from the image.
     Removing main.o(.rev16_text), (4 bytes).
     Removing main.o(.revsh_text), (4 bytes).
     Removing main.o(.rrx_text), (6 bytes).
+    Removing main.o(.data), (12 bytes).
     Removing gpio.o(.rev16_text), (4 bytes).
     Removing gpio.o(.revsh_text), (4 bytes).
     Removing gpio.o(.rrx_text), (6 bytes).
     Removing gpio.o(i.GPIO_DIR_Write), (18 bytes).
     Removing gpio.o(i.GPIO_PIN_Write), (18 bytes).
+    Removing gpio.o(i.LED2_On), (20 bytes).
     Removing gpio.o(i.LED3_On), (2 bytes).
     Removing gpio.o(i.LED4_On), (2 bytes).
     Removing wait.o(.rev16_text), (4 bytes).
     Removing wait.o(.revsh_text), (4 bytes).
     Removing wait.o(.rrx_text), (6 bytes).
-    Removing wait.o(i.wait), (20 bytes).
     Removing wait.o(i.waitMicroseconds), (18 bytes).
     Removing ultrasonic.o(.rev16_text), (4 bytes).
     Removing ultrasonic.o(.revsh_text), (4 bytes).
@@ -384,6 +411,12 @@ Removing Unused input sections from the image.
     Removing serial.o(.rev16_text), (4 bytes).
     Removing serial.o(.revsh_text), (4 bytes).
     Removing serial.o(.rrx_text), (6 bytes).
+    Removing i2c.o(.rev16_text), (4 bytes).
+    Removing i2c.o(.revsh_text), (4 bytes).
+    Removing i2c.o(.rrx_text), (6 bytes).
+    Removing mma7455.o(.rev16_text), (4 bytes).
+    Removing mma7455.o(.revsh_text), (4 bytes).
+    Removing mma7455.o(.rrx_text), (6 bytes).
     Removing startup_lpc407x_8x_177x_8x.o(HEAP), (0 bytes).
     Removing system_lpc407x_8x_177x_8x.o(.rev16_text), (4 bytes).
     Removing system_lpc407x_8x_177x_8x.o(.revsh_text), (4 bytes).
@@ -395,7 +428,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-55 unused section(s) (total 1888 bytes) removed from the image.
+62 unused section(s) (total 1928 bytes) removed from the image.
 
 ==============================================================================
 
@@ -408,33 +441,33 @@ Image Symbol Table
     RESET                                    0x00000000   Section      228  startup_lpc407x_8x_177x_8x.o(RESET)
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/fputc.c           0x00000000   Number         0  fputc.o ABSOLUTE
     ../clib/microlib/stdio/semi.s            0x00000000   Number         0  semi.o ABSOLUTE
@@ -447,13 +480,17 @@ Image Symbol Table
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
     Library\GPIO.c                           0x00000000   Number         0  gpio.o ABSOLUTE
+    Library\I2C.c                            0x00000000   Number         0  i2c.o ABSOLUTE
     Library\LCD.c                            0x00000000   Number         0  lcd.o ABSOLUTE
+    Library\MMA7455.c                        0x00000000   Number         0  mma7455.o ABSOLUTE
     Library\Serial.c                         0x00000000   Number         0  serial.o ABSOLUTE
     Library\Timer.c                          0x00000000   Number         0  timer.o ABSOLUTE
     Library\Ultrasonic.c                     0x00000000   Number         0  ultrasonic.o ABSOLUTE
     Library\Wait.c                           0x00000000   Number         0  wait.o ABSOLUTE
     Library\\GPIO.c                          0x00000000   Number         0  gpio.o ABSOLUTE
+    Library\\I2C.c                           0x00000000   Number         0  i2c.o ABSOLUTE
     Library\\LCD.c                           0x00000000   Number         0  lcd.o ABSOLUTE
+    Library\\MMA7455.c                       0x00000000   Number         0  mma7455.o ABSOLUTE
     Library\\Serial.c                        0x00000000   Number         0  serial.o ABSOLUTE
     Library\\Timer.c                         0x00000000   Number         0  timer.o ABSOLUTE
     Library\\Ultrasonic.c                    0x00000000   Number         0  ultrasonic.o ABSOLUTE
@@ -481,45 +518,66 @@ Image Symbol Table
     $v0                                      0x000000f8   Number         0  startup_lpc407x_8x_177x_8x.o(.text)
     .text                                    0x0000011c   Section        0  uidiv.o(.text)
     .text                                    0x00000148   Section       36  init.o(.text)
-    i.LED1_Init                              0x0000016c   Section        0  gpio.o(i.LED1_Init)
-    i.LED1_Off                               0x00000180   Section        0  gpio.o(i.LED1_Off)
-    i.LED1_On                                0x00000194   Section        0  gpio.o(i.LED1_On)
-    i.LED2_Init                              0x000001a8   Section        0  gpio.o(i.LED2_Init)
-    i.LED2_Off                               0x000001bc   Section        0  gpio.o(i.LED2_Off)
-    i.LED2_On                                0x000001d0   Section        0  gpio.o(i.LED2_On)
-    i.LED3_Init                              0x000001e4   Section        0  gpio.o(i.LED3_Init)
-    i.LED3_Off                               0x000001e6   Section        0  gpio.o(i.LED3_Off)
-    i.LED4_Init                              0x000001e8   Section        0  gpio.o(i.LED4_Init)
-    i.LED4_Off                               0x000001ea   Section        0  gpio.o(i.LED4_Off)
-    i.Serial_Init                            0x000001ec   Section        0  serial.o(i.Serial_Init)
-    i.Serial_ReadData                        0x000002f0   Section        0  serial.o(i.Serial_ReadData)
+    i.I2C_DoRead                             0x0000016c   Section        0  i2c.o(i.I2C_DoRead)
+    i.I2C_DoWrite                            0x00000198   Section        0  i2c.o(i.I2C_DoWrite)
+    i.I2C_Init                               0x000001b4   Section        0  i2c.o(i.I2C_Init)
+    i.I2C_Read                               0x00000210   Section        0  i2c.o(i.I2C_Read)
+    i.I2C_ReadData                           0x00000240   Section        0  i2c.o(i.I2C_ReadData)
+    i.I2C_Start                              0x000002d4   Section        0  i2c.o(i.I2C_Start)
     .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc407x_8x_177x_8x.o(.ARM.__at_0x02FC)
-    i.Serial_WriteData                       0x00000300   Section        0  serial.o(i.Serial_WriteData)
-    i.SystemCoreClockUpdate                  0x00000314   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
-    i.SystemInit                             0x000005e8   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemInit)
-    i.TIMER2_IRQHandler                      0x000006d4   Section        0  ultrasonic.o(i.TIMER2_IRQHandler)
-    i.TIMER3_IRQHandler                      0x0000070c   Section        0  timer.o(i.TIMER3_IRQHandler)
-    i.UART0_IRQHandler                       0x00000758   Section        0  serial.o(i.UART0_IRQHandler)
-    i.Ultrasonic_Capture_Timer_Init          0x000007ac   Section        0  timer.o(i.Ultrasonic_Capture_Timer_Init)
-    i.Ultrasonic_Init                        0x00000810   Section        0  ultrasonic.o(i.Ultrasonic_Init)
-    i.Ultrasonic_Start_Trigger_Timer         0x00000854   Section        0  ultrasonic.o(i.Ultrasonic_Start_Trigger_Timer)
-    i.Ultrasonic_Trigger_Timer_Init          0x00000880   Section        0  ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init)
-    i.__0sprintf$1                           0x00000920   Section        0  printf1.o(i.__0sprintf$1)
-    i.__scatterload_copy                     0x00000948   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00000956   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00000958   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x00000968   Section        0  printf1.o(i._printf_core)
-    _printf_core                             0x00000969   Thumb Code   336  printf1.o(i._printf_core)
-    i._sputc                                 0x00000abc   Section        0  printf1.o(i._sputc)
-    _sputc                                   0x00000abd   Thumb Code    10  printf1.o(i._sputc)
-    i.fpu_init                               0x00000ac8   Section        0  system_lpc407x_8x_177x_8x.o(i.fpu_init)
-    i.init                                   0x00000b18   Section        0  main.o(i.init)
-    i.main                                   0x00000b50   Section        0  main.o(i.main)
-    i.update                                 0x00000b70   Section        0  main.o(i.update)
+    i.I2C_Stop                               0x00000300   Section        0  i2c.o(i.I2C_Stop)
+    i.I2C_Wait_SI                            0x00000334   Section        0  i2c.o(i.I2C_Wait_SI)
+    i.I2C_Write                              0x00000360   Section        0  i2c.o(i.I2C_Write)
+    i.I2C_WriteData                          0x00000390   Section        0  i2c.o(i.I2C_WriteData)
+    i.LED1_Init                              0x000003fc   Section        0  gpio.o(i.LED1_Init)
+    i.LED1_Off                               0x00000410   Section        0  gpio.o(i.LED1_Off)
+    i.LED1_On                                0x00000424   Section        0  gpio.o(i.LED1_On)
+    i.LED2_Init                              0x00000438   Section        0  gpio.o(i.LED2_Init)
+    i.LED2_Off                               0x0000044c   Section        0  gpio.o(i.LED2_Off)
+    i.LED3_Init                              0x00000460   Section        0  gpio.o(i.LED3_Init)
+    i.LED3_Off                               0x00000462   Section        0  gpio.o(i.LED3_Off)
+    i.LED4_Init                              0x00000464   Section        0  gpio.o(i.LED4_Init)
+    i.LED4_Off                               0x00000466   Section        0  gpio.o(i.LED4_Off)
+    i.MMA7455_Init                           0x00000468   Section        0  mma7455.o(i.MMA7455_Init)
+    i.MMA7455_calibrate                      0x00000470   Section        0  mma7455.o(i.MMA7455_calibrate)
+    i.MMA7455_getModeControl                 0x00000510   Section        0  mma7455.o(i.MMA7455_getModeControl)
+    i.MMA7455_getStatus                      0x00000548   Section        0  mma7455.o(i.MMA7455_getStatus)
+    i.MMA7455_read                           0x00000580   Section        0  mma7455.o(i.MMA7455_read)
+    i.MMA7455_setMode                        0x00000670   Section        0  mma7455.o(i.MMA7455_setMode)
+    i.MMA7455_setModeControl                 0x000006a0   Section        0  mma7455.o(i.MMA7455_setModeControl)
+    i.Serial_Init                            0x000006d0   Section        0  serial.o(i.Serial_Init)
+    i.Serial_ReadData                        0x000007d4   Section        0  serial.o(i.Serial_ReadData)
+    i.Serial_WriteData                       0x000007e0   Section        0  serial.o(i.Serial_WriteData)
+    i.SystemCoreClockUpdate                  0x000007f4   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
+    i.SystemInit                             0x00000ac8   Section        0  system_lpc407x_8x_177x_8x.o(i.SystemInit)
+    i.TIMER2_IRQHandler                      0x00000bb4   Section        0  ultrasonic.o(i.TIMER2_IRQHandler)
+    i.TIMER3_IRQHandler                      0x00000bec   Section        0  timer.o(i.TIMER3_IRQHandler)
+    i.UART0_IRQHandler                       0x00000c38   Section        0  serial.o(i.UART0_IRQHandler)
+    i.Ultrasonic_Capture_Timer_Init          0x00000c8c   Section        0  timer.o(i.Ultrasonic_Capture_Timer_Init)
+    i.Ultrasonic_Init                        0x00000cf0   Section        0  ultrasonic.o(i.Ultrasonic_Init)
+    i.Ultrasonic_Start_Trigger_Timer         0x00000d34   Section        0  ultrasonic.o(i.Ultrasonic_Start_Trigger_Timer)
+    i.Ultrasonic_Trigger_Timer_Init          0x00000d60   Section        0  ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init)
+    i.__0sprintf$1                           0x00000e00   Section        0  printf1.o(i.__0sprintf$1)
+    i.__scatterload_copy                     0x00000e28   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00000e36   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00000e38   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x00000e48   Section        0  printf1.o(i._printf_core)
+    _printf_core                             0x00000e49   Thumb Code   336  printf1.o(i._printf_core)
+    i._sputc                                 0x00000f9c   Section        0  printf1.o(i._sputc)
+    _sputc                                   0x00000f9d   Thumb Code    10  printf1.o(i._sputc)
+    i.fpu_init                               0x00000fa8   Section        0  system_lpc407x_8x_177x_8x.o(i.fpu_init)
+    i.init                                   0x00000ff8   Section        0  main.o(i.init)
+    i.main                                   0x0000103e   Section        0  main.o(i.main)
+    i.update                                 0x00001050   Section        0  main.o(i.update)
+    i.wait                                   0x000010c0   Section        0  wait.o(i.wait)
     .data                                    0x10000000   Section       11  ultrasonic.o(.data)
     .data                                    0x1000000c   Section        9  serial.o(.data)
-    .data                                    0x10000018   Section       16  system_lpc407x_8x_177x_8x.o(.data)
-    STACK                                    0x10000028   Section     1024  startup_lpc407x_8x_177x_8x.o(STACK)
+    .data                                    0x10000018   Section       12  mma7455.o(.data)
+    xOffset                                  0x10000018   Data           4  mma7455.o(.data)
+    yOffset                                  0x1000001c   Data           4  mma7455.o(.data)
+    zOffset                                  0x10000020   Data           4  mma7455.o(.data)
+    .data                                    0x10000024   Section       16  system_lpc407x_8x_177x_8x.o(.data)
+    STACK                                    0x10000038   Section     1024  startup_lpc407x_8x_177x_8x.o(STACK)
 
     Global Symbols
 
@@ -634,40 +692,57 @@ Image Symbol Table
     __aeabi_uidivmod                         0x0000011d   Thumb Code    44  uidiv.o(.text)
     __scatterload                            0x00000149   Thumb Code    28  init.o(.text)
     __scatterload_rt2                        0x00000149   Thumb Code     0  init.o(.text)
-    LED1_Init                                0x0000016d   Thumb Code    14  gpio.o(i.LED1_Init)
-    LED1_Off                                 0x00000181   Thumb Code    14  gpio.o(i.LED1_Off)
-    LED1_On                                  0x00000195   Thumb Code    14  gpio.o(i.LED1_On)
-    LED2_Init                                0x000001a9   Thumb Code    14  gpio.o(i.LED2_Init)
-    LED2_Off                                 0x000001bd   Thumb Code    14  gpio.o(i.LED2_Off)
-    LED2_On                                  0x000001d1   Thumb Code    14  gpio.o(i.LED2_On)
-    LED3_Init                                0x000001e5   Thumb Code     2  gpio.o(i.LED3_Init)
-    LED3_Off                                 0x000001e7   Thumb Code     2  gpio.o(i.LED3_Off)
-    LED4_Init                                0x000001e9   Thumb Code     2  gpio.o(i.LED4_Init)
-    LED4_Off                                 0x000001eb   Thumb Code     2  gpio.o(i.LED4_Off)
-    Serial_Init                              0x000001ed   Thumb Code   240  serial.o(i.Serial_Init)
-    Serial_ReadData                          0x000002f1   Thumb Code     6  serial.o(i.Serial_ReadData)
-    Serial_WriteData                         0x00000301   Thumb Code    12  serial.o(i.Serial_WriteData)
-    SystemCoreClockUpdate                    0x00000315   Thumb Code   696  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
-    SystemInit                               0x000005e9   Thumb Code   220  system_lpc407x_8x_177x_8x.o(i.SystemInit)
-    TIMER2_IRQHandler                        0x000006d5   Thumb Code    46  ultrasonic.o(i.TIMER2_IRQHandler)
-    TIMER3_IRQHandler                        0x0000070d   Thumb Code    60  timer.o(i.TIMER3_IRQHandler)
-    UART0_IRQHandler                         0x00000759   Thumb Code    68  serial.o(i.UART0_IRQHandler)
-    Ultrasonic_Capture_Timer_Init            0x000007ad   Thumb Code    92  timer.o(i.Ultrasonic_Capture_Timer_Init)
-    Ultrasonic_Init                          0x00000811   Thumb Code    64  ultrasonic.o(i.Ultrasonic_Init)
-    Ultrasonic_Start_Trigger_Timer           0x00000855   Thumb Code    38  ultrasonic.o(i.Ultrasonic_Start_Trigger_Timer)
-    Ultrasonic_Trigger_Timer_Init            0x00000881   Thumb Code   138  ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init)
-    __0sprintf$1                             0x00000921   Thumb Code    34  printf1.o(i.__0sprintf$1)
-    __1sprintf$1                             0x00000921   Thumb Code     0  printf1.o(i.__0sprintf$1)
-    __2sprintf                               0x00000921   Thumb Code     0  printf1.o(i.__0sprintf$1)
-    __scatterload_copy                       0x00000949   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00000957   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00000959   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    fpu_init                                 0x00000ac9   Thumb Code    62  system_lpc407x_8x_177x_8x.o(i.fpu_init)
-    init                                     0x00000b19   Thumb Code    56  main.o(i.init)
-    main                                     0x00000b51   Thumb Code    28  main.o(i.main)
-    update                                   0x00000b71   Thumb Code   102  main.o(i.update)
-    Region$$Table$$Base                      0x00000bfc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000c1c   Number         0  anon$$obj.o(Region$$Table)
+    I2C_DoRead                               0x0000016d   Thumb Code    38  i2c.o(i.I2C_DoRead)
+    I2C_DoWrite                              0x00000199   Thumb Code    24  i2c.o(i.I2C_DoWrite)
+    I2C_Init                                 0x000001b5   Thumb Code    78  i2c.o(i.I2C_Init)
+    I2C_Read                                 0x00000211   Thumb Code    48  i2c.o(i.I2C_Read)
+    I2C_ReadData                             0x00000241   Thumb Code   142  i2c.o(i.I2C_ReadData)
+    I2C_Start                                0x000002d5   Thumb Code    36  i2c.o(i.I2C_Start)
+    I2C_Stop                                 0x00000301   Thumb Code    42  i2c.o(i.I2C_Stop)
+    I2C_Wait_SI                              0x00000335   Thumb Code    34  i2c.o(i.I2C_Wait_SI)
+    I2C_Write                                0x00000361   Thumb Code    48  i2c.o(i.I2C_Write)
+    I2C_WriteData                            0x00000391   Thumb Code   106  i2c.o(i.I2C_WriteData)
+    LED1_Init                                0x000003fd   Thumb Code    14  gpio.o(i.LED1_Init)
+    LED1_Off                                 0x00000411   Thumb Code    14  gpio.o(i.LED1_Off)
+    LED1_On                                  0x00000425   Thumb Code    14  gpio.o(i.LED1_On)
+    LED2_Init                                0x00000439   Thumb Code    14  gpio.o(i.LED2_Init)
+    LED2_Off                                 0x0000044d   Thumb Code    14  gpio.o(i.LED2_Off)
+    LED3_Init                                0x00000461   Thumb Code     2  gpio.o(i.LED3_Init)
+    LED3_Off                                 0x00000463   Thumb Code     2  gpio.o(i.LED3_Off)
+    LED4_Init                                0x00000465   Thumb Code     2  gpio.o(i.LED4_Init)
+    LED4_Off                                 0x00000467   Thumb Code     2  gpio.o(i.LED4_Off)
+    MMA7455_Init                             0x00000469   Thumb Code     8  mma7455.o(i.MMA7455_Init)
+    MMA7455_calibrate                        0x00000471   Thumb Code   148  mma7455.o(i.MMA7455_calibrate)
+    MMA7455_getModeControl                   0x00000511   Thumb Code    56  mma7455.o(i.MMA7455_getModeControl)
+    MMA7455_getStatus                        0x00000549   Thumb Code    56  mma7455.o(i.MMA7455_getStatus)
+    MMA7455_read                             0x00000581   Thumb Code   228  mma7455.o(i.MMA7455_read)
+    MMA7455_setMode                          0x00000671   Thumb Code    48  mma7455.o(i.MMA7455_setMode)
+    MMA7455_setModeControl                   0x000006a1   Thumb Code    46  mma7455.o(i.MMA7455_setModeControl)
+    Serial_Init                              0x000006d1   Thumb Code   240  serial.o(i.Serial_Init)
+    Serial_ReadData                          0x000007d5   Thumb Code     6  serial.o(i.Serial_ReadData)
+    Serial_WriteData                         0x000007e1   Thumb Code    12  serial.o(i.Serial_WriteData)
+    SystemCoreClockUpdate                    0x000007f5   Thumb Code   696  system_lpc407x_8x_177x_8x.o(i.SystemCoreClockUpdate)
+    SystemInit                               0x00000ac9   Thumb Code   220  system_lpc407x_8x_177x_8x.o(i.SystemInit)
+    TIMER2_IRQHandler                        0x00000bb5   Thumb Code    46  ultrasonic.o(i.TIMER2_IRQHandler)
+    TIMER3_IRQHandler                        0x00000bed   Thumb Code    60  timer.o(i.TIMER3_IRQHandler)
+    UART0_IRQHandler                         0x00000c39   Thumb Code    68  serial.o(i.UART0_IRQHandler)
+    Ultrasonic_Capture_Timer_Init            0x00000c8d   Thumb Code    92  timer.o(i.Ultrasonic_Capture_Timer_Init)
+    Ultrasonic_Init                          0x00000cf1   Thumb Code    64  ultrasonic.o(i.Ultrasonic_Init)
+    Ultrasonic_Start_Trigger_Timer           0x00000d35   Thumb Code    38  ultrasonic.o(i.Ultrasonic_Start_Trigger_Timer)
+    Ultrasonic_Trigger_Timer_Init            0x00000d61   Thumb Code   138  ultrasonic.o(i.Ultrasonic_Trigger_Timer_Init)
+    __0sprintf$1                             0x00000e01   Thumb Code    34  printf1.o(i.__0sprintf$1)
+    __1sprintf$1                             0x00000e01   Thumb Code     0  printf1.o(i.__0sprintf$1)
+    __2sprintf                               0x00000e01   Thumb Code     0  printf1.o(i.__0sprintf$1)
+    __scatterload_copy                       0x00000e29   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00000e37   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00000e39   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    fpu_init                                 0x00000fa9   Thumb Code    62  system_lpc407x_8x_177x_8x.o(i.fpu_init)
+    init                                     0x00000ff9   Thumb Code    70  main.o(i.init)
+    main                                     0x0000103f   Thumb Code    18  main.o(i.main)
+    update                                   0x00001051   Thumb Code    82  main.o(i.update)
+    wait                                     0x000010c1   Thumb Code    20  wait.o(i.wait)
+    Region$$Table$$Base                      0x000010d4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000010f4   Number         0  anon$$obj.o(Region$$Table)
     ultrasonicSensorDuration                 0x10000000   Data           4  ultrasonic.o(.data)
     ultrasonicSensorDistance                 0x10000004   Data           4  ultrasonic.o(.data)
     ultrasonicSensorNewDataAvailable         0x10000008   Data           1  ultrasonic.o(.data)
@@ -676,11 +751,11 @@ Image Symbol Table
     serialReceivedCharacter                  0x1000000c   Data           1  serial.o(.data)
     serialTransmitData                       0x10000010   Data           4  serial.o(.data)
     serialTransmitCompleted                  0x10000014   Data           1  serial.o(.data)
-    SystemCoreClock                          0x10000018   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    PeripheralClock                          0x1000001c   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    EMCClock                                 0x10000020   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    USBClock                                 0x10000024   Data           4  system_lpc407x_8x_177x_8x.o(.data)
-    __initial_sp                             0x10000428   Data           0  startup_lpc407x_8x_177x_8x.o(STACK)
+    SystemCoreClock                          0x10000024   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    PeripheralClock                          0x10000028   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    EMCClock                                 0x1000002c   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    USBClock                                 0x10000030   Data           4  system_lpc407x_8x_177x_8x.o(.data)
+    __initial_sp                             0x10000438   Data           0  startup_lpc407x_8x_177x_8x.o(STACK)
 
 
 
@@ -690,79 +765,100 @@ Memory Map of the image
 
   Image Entry point : 0x000000f9
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000c44, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001128, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x00000c1c, Max: 0xffffffff, ABSOLUTE)
-
-    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x00000000   0x000000e4   Data   RO          510    RESET               startup_lpc407x_8x_177x_8x.o
-    0x000000e4   0x00000000   Code   RO          560  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x000000e4   0x00000004   Code   RO          824    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x000000e8   0x00000004   Code   RO          827    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x000000ec   0x00000000   Code   RO          829    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x000000ec   0x00000000   Code   RO          831    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x000000ec   0x00000008   Code   RO          832    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x000000f4   0x00000000   Code   RO          834    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x000000f4   0x00000000   Code   RO          836    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x000000f4   0x00000004   Code   RO          825    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x000000f8   0x00000024   Code   RO          512  * .text               startup_lpc407x_8x_177x_8x.o
-    0x0000011c   0x0000002c   Code   RO          841    .text               mc_w.l(uidiv.o)
-    0x00000148   0x00000024   Code   RO          856    .text               mc_w.l(init.o)
-    0x0000016c   0x00000014   Code   RO           98    i.LED1_Init         gpio.o
-    0x00000180   0x00000014   Code   RO           99    i.LED1_Off          gpio.o
-    0x00000194   0x00000014   Code   RO          100    i.LED1_On           gpio.o
-    0x000001a8   0x00000014   Code   RO          101    i.LED2_Init         gpio.o
-    0x000001bc   0x00000014   Code   RO          102    i.LED2_Off          gpio.o
-    0x000001d0   0x00000014   Code   RO          103    i.LED2_On           gpio.o
-    0x000001e4   0x00000002   Code   RO          104    i.LED3_Init         gpio.o
-    0x000001e6   0x00000002   Code   RO          105    i.LED3_Off          gpio.o
-    0x000001e8   0x00000002   Code   RO          107    i.LED4_Init         gpio.o
-    0x000001ea   0x00000002   Code   RO          108    i.LED4_Off          gpio.o
-    0x000001ec   0x00000104   Code   RO          459    i.Serial_Init       serial.o
-    0x000002f0   0x0000000c   Code   RO          460    i.Serial_ReadData   serial.o
-    0x000002fc   0x00000004   Code   RO          511    .ARM.__at_0x02FC    startup_lpc407x_8x_177x_8x.o
-    0x00000300   0x00000014   Code   RO          461    i.Serial_WriteData  serial.o
-    0x00000314   0x000002d4   Code   RO          521    i.SystemCoreClockUpdate  system_lpc407x_8x_177x_8x.o
-    0x000005e8   0x000000ec   Code   RO          522    i.SystemInit        system_lpc407x_8x_177x_8x.o
-    0x000006d4   0x00000038   Code   RO          234    i.TIMER2_IRQHandler  ultrasonic.o
-    0x0000070c   0x0000004c   Code   RO          292    i.TIMER3_IRQHandler  timer.o
-    0x00000758   0x00000054   Code   RO          462    i.UART0_IRQHandler  serial.o
-    0x000007ac   0x00000064   Code   RO          293    i.Ultrasonic_Capture_Timer_Init  timer.o
-    0x00000810   0x00000044   Code   RO          235    i.Ultrasonic_Init   ultrasonic.o
-    0x00000854   0x0000002c   Code   RO          236    i.Ultrasonic_Start_Trigger_Timer  ultrasonic.o
-    0x00000880   0x000000a0   Code   RO          237    i.Ultrasonic_Trigger_Timer_Init  ultrasonic.o
-    0x00000920   0x00000028   Code   RO          610    i.__0sprintf$1      mc_w.l(printf1.o)
-    0x00000948   0x0000000e   Code   RO          870    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00000956   0x00000002   Code   RO          871    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00000958   0x0000000e   Code   RO          872    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00000966   0x00000002   PAD
-    0x00000968   0x00000154   Code   RO          615    i._printf_core      mc_w.l(printf1.o)
-    0x00000abc   0x0000000a   Code   RO          617    i._sputc            mc_w.l(printf1.o)
-    0x00000ac6   0x00000002   PAD
-    0x00000ac8   0x00000050   Code   RO          523    i.fpu_init          system_lpc407x_8x_177x_8x.o
-    0x00000b18   0x00000038   Code   RO            4    i.init              main.o
-    0x00000b50   0x00000020   Code   RO            5    i.main              main.o
-    0x00000b70   0x0000008c   Code   RO            6    i.update            main.o
-    0x00000bfc   0x00000020   Data   RO          868    Region$$Table       anon$$obj.o
-
-
-    Execution Region ER_RW (Base: 0x10000000, Size: 0x00000028, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x000010f4, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x10000000   0x0000000b   Data   RW          238    .data               ultrasonic.o
+    0x00000000   0x000000e4   Data   RO          664    RESET               startup_lpc407x_8x_177x_8x.o
+    0x000000e4   0x00000000   Code   RO          714  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x000000e4   0x00000004   Code   RO          978    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x000000e8   0x00000004   Code   RO          981    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x000000ec   0x00000000   Code   RO          983    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x000000ec   0x00000000   Code   RO          985    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x000000ec   0x00000008   Code   RO          986    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x000000f4   0x00000000   Code   RO          988    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x000000f4   0x00000000   Code   RO          990    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x000000f4   0x00000004   Code   RO          979    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x000000f8   0x00000024   Code   RO          666  * .text               startup_lpc407x_8x_177x_8x.o
+    0x0000011c   0x0000002c   Code   RO          995    .text               mc_w.l(uidiv.o)
+    0x00000148   0x00000024   Code   RO         1010    .text               mc_w.l(init.o)
+    0x0000016c   0x0000002c   Code   RO          519    i.I2C_DoRead        i2c.o
+    0x00000198   0x0000001c   Code   RO          520    i.I2C_DoWrite       i2c.o
+    0x000001b4   0x0000005c   Code   RO          521    i.I2C_Init          i2c.o
+    0x00000210   0x00000030   Code   RO          522    i.I2C_Read          i2c.o
+    0x00000240   0x00000094   Code   RO          523    i.I2C_ReadData      i2c.o
+    0x000002d4   0x00000028   Code   RO          524    i.I2C_Start         i2c.o
+    0x000002fc   0x00000004   Code   RO          665    .ARM.__at_0x02FC    startup_lpc407x_8x_177x_8x.o
+    0x00000300   0x00000034   Code   RO          525    i.I2C_Stop          i2c.o
+    0x00000334   0x0000002c   Code   RO          526    i.I2C_Wait_SI       i2c.o
+    0x00000360   0x00000030   Code   RO          527    i.I2C_Write         i2c.o
+    0x00000390   0x0000006a   Code   RO          528    i.I2C_WriteData     i2c.o
+    0x000003fa   0x00000002   PAD
+    0x000003fc   0x00000014   Code   RO          106    i.LED1_Init         gpio.o
+    0x00000410   0x00000014   Code   RO          107    i.LED1_Off          gpio.o
+    0x00000424   0x00000014   Code   RO          108    i.LED1_On           gpio.o
+    0x00000438   0x00000014   Code   RO          109    i.LED2_Init         gpio.o
+    0x0000044c   0x00000014   Code   RO          110    i.LED2_Off          gpio.o
+    0x00000460   0x00000002   Code   RO          112    i.LED3_Init         gpio.o
+    0x00000462   0x00000002   Code   RO          113    i.LED3_Off          gpio.o
+    0x00000464   0x00000002   Code   RO          115    i.LED4_Init         gpio.o
+    0x00000466   0x00000002   Code   RO          116    i.LED4_Off          gpio.o
+    0x00000468   0x00000008   Code   RO          600    i.MMA7455_Init      mma7455.o
+    0x00000470   0x000000a0   Code   RO          601    i.MMA7455_calibrate  mma7455.o
+    0x00000510   0x00000038   Code   RO          602    i.MMA7455_getModeControl  mma7455.o
+    0x00000548   0x00000038   Code   RO          603    i.MMA7455_getStatus  mma7455.o
+    0x00000580   0x000000f0   Code   RO          604    i.MMA7455_read      mma7455.o
+    0x00000670   0x00000030   Code   RO          605    i.MMA7455_setMode   mma7455.o
+    0x000006a0   0x0000002e   Code   RO          606    i.MMA7455_setModeControl  mma7455.o
+    0x000006ce   0x00000002   PAD
+    0x000006d0   0x00000104   Code   RO          467    i.Serial_Init       serial.o
+    0x000007d4   0x0000000c   Code   RO          468    i.Serial_ReadData   serial.o
+    0x000007e0   0x00000014   Code   RO          469    i.Serial_WriteData  serial.o
+    0x000007f4   0x000002d4   Code   RO          675    i.SystemCoreClockUpdate  system_lpc407x_8x_177x_8x.o
+    0x00000ac8   0x000000ec   Code   RO          676    i.SystemInit        system_lpc407x_8x_177x_8x.o
+    0x00000bb4   0x00000038   Code   RO          242    i.TIMER2_IRQHandler  ultrasonic.o
+    0x00000bec   0x0000004c   Code   RO          300    i.TIMER3_IRQHandler  timer.o
+    0x00000c38   0x00000054   Code   RO          470    i.UART0_IRQHandler  serial.o
+    0x00000c8c   0x00000064   Code   RO          301    i.Ultrasonic_Capture_Timer_Init  timer.o
+    0x00000cf0   0x00000044   Code   RO          243    i.Ultrasonic_Init   ultrasonic.o
+    0x00000d34   0x0000002c   Code   RO          244    i.Ultrasonic_Start_Trigger_Timer  ultrasonic.o
+    0x00000d60   0x000000a0   Code   RO          245    i.Ultrasonic_Trigger_Timer_Init  ultrasonic.o
+    0x00000e00   0x00000028   Code   RO          764    i.__0sprintf$1      mc_w.l(printf1.o)
+    0x00000e28   0x0000000e   Code   RO         1024    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00000e36   0x00000002   Code   RO         1025    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00000e38   0x0000000e   Code   RO         1026    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000e46   0x00000002   PAD
+    0x00000e48   0x00000154   Code   RO          769    i._printf_core      mc_w.l(printf1.o)
+    0x00000f9c   0x0000000a   Code   RO          771    i._sputc            mc_w.l(printf1.o)
+    0x00000fa6   0x00000002   PAD
+    0x00000fa8   0x00000050   Code   RO          677    i.fpu_init          system_lpc407x_8x_177x_8x.o
+    0x00000ff8   0x00000046   Code   RO            4    i.init              main.o
+    0x0000103e   0x00000012   Code   RO            5    i.main              main.o
+    0x00001050   0x00000070   Code   RO            6    i.update            main.o
+    0x000010c0   0x00000014   Code   RO          209    i.wait              wait.o
+    0x000010d4   0x00000020   Data   RO         1022    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Base: 0x10000000, Size: 0x00000034, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x10000000   0x0000000b   Data   RW          246    .data               ultrasonic.o
     0x1000000b   0x00000001   PAD
-    0x1000000c   0x00000009   Data   RW          463    .data               serial.o
+    0x1000000c   0x00000009   Data   RW          471    .data               serial.o
     0x10000015   0x00000003   PAD
-    0x10000018   0x00000010   Data   RW          524    .data               system_lpc407x_8x_177x_8x.o
+    0x10000018   0x0000000c   Data   RW          607    .data               mma7455.o
+    0x10000024   0x00000010   Data   RW          678    .data               system_lpc407x_8x_177x_8x.o
 
 
-    Execution Region ER_ZI (Base: 0x10000028, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Base: 0x10000034, Size: 0x00000404, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x10000028   0x00000400   Zero   RW          508    STACK               startup_lpc407x_8x_177x_8x.o
+    0x10000034   0x00000004   PAD
+    0x10000038   0x00000400   Zero   RW          662    STACK               startup_lpc407x_8x_177x_8x.o
 
 
 ==============================================================================
@@ -772,18 +868,21 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       128         36          0          0          0       4136   gpio.o
-       228         42          0          0          0      28243   main.o
+       108         30          0          0          0       3722   gpio.o
+       650         54          0          0          0       6513   i2c.o
+       200         30          0          0          0      28247   main.o
+       614         24          0         12          0       4698   mma7455.o
        376         50          0          9          0      29202   serial.o
         40         12        228          0       1024       1072   startup_lpc407x_8x_177x_8x.o
       1040         62          0         16          0       4504   system_lpc407x_8x_177x_8x.o
        176         24          0          0          0      27695   timer.o
        328         42          0         11          0      29394   ultrasonic.o
+        20          0          0          0          0        499   wait.o
 
     ----------------------------------------------------------------------
-      2316        268        260         40       1024     124246   Object Totals
+      3556        328        260         52       1028     135546   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          0          4          0          0   (incl. Padding)
+         4          0          0          4          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -822,15 +921,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2840        294        260         40       1024     122746   Grand Totals
-      2840        294        260         40       1024     122746   ELF Image Totals
-      2840        294        260         40          0          0   ROM Totals
+      4080        354        260         52       1028     132346   Grand Totals
+      4080        354        260         52       1028     132346   ELF Image Totals
+      4080        354        260         52          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3100 (   3.03kB)
-    Total RW  Size (RW Data + ZI Data)              1064 (   1.04kB)
-    Total ROM Size (Code + RO Data + RW Data)       3140 (   3.07kB)
+    Total RO  Size (Code + RO Data)                 4340 (   4.24kB)
+    Total RW  Size (RW Data + ZI Data)              1080 (   1.05kB)
+    Total ROM Size (Code + RO Data + RW Data)       4392 (   4.29kB)
 
 ==============================================================================
 

@@ -3,7 +3,7 @@
 #include "Library/Ultrasonic.h"
 #include "Library/SystemStructures.h"
 #include "Library/Timer.h"
-
+#include "Library/LCD.h"
 void init() {
 	Ultrasonic_Init();
 	Ultrasonic_Trigger_Timer_Init();
@@ -34,9 +34,11 @@ void update() {
 	if(ultrasonicSensorNewDataAvailable){
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
 		if(ultrasonicSensorDistance < 10){
+			LCD_write("<10");
 			LED1_Off();
 			LED2_Off();
 		}else{
+			LCD_write(">=10");
 			LED1_On();
 			LED2_Off();
 		}

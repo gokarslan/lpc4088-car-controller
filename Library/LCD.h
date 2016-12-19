@@ -15,8 +15,8 @@
 #define EN_PORT			PORT0
 #define EN_MASK			((uint32_t) 1 << 7)
 
-#define DATA0_PORT	PORT0
-#define DATA0_MASK	((uint32_t) 1 << 23)
+#define DATA0_PORT	PORT1
+#define DATA0_MASK	((uint32_t) 1 << 30) //Instead of P15, use P19 its at port1, 30.
 
 #define DATA1_PORT	PORT0
 #define DATA1_MASK	((uint32_t) 1 << 24)

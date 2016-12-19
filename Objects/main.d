@@ -12,3 +12,5 @@
 .\objects\main.o: Library/Timer.h
 .\objects\main.o: Library/Ultrasonic.h
 .\objects\main.o: Library/SystemStructures.h
+.\objects\main.o: Library/LCD.h
+.\objects\main.o: Library/Wait.h

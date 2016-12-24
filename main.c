@@ -6,6 +6,7 @@
 #include "Library/Serial.h"
 #include "Library/MMA7455.h"
 #include "Library/Serial.h"
+#include "Library/PWM.h"
 
 #include <stdio.h>
 #define ULTRASONIC_THRESHOLD 10
@@ -18,6 +19,7 @@ void init() {
 	MMA7455_calibrate();
 	Serial_Init();
 	LCD_Init();
+	PWM_Init();
 	
 	Ultrasonic_Init();
 	Ultrasonic_Trigger_Timer_Init();
@@ -44,6 +46,7 @@ void update() {
 	int z=0;
 	char serialTemp[20];
 	char lcdTemp[9];
+	PWM_Write(900);
 	if(ultrasonicSensorNewDataAvailable){
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
 		if(ultrasonicSensorDistance <= ULTRASONIC_THRESHOLD){
@@ -51,6 +54,8 @@ void update() {
 			sprintf(lcdTemp, "LAP: %03d",lapCount);
 			LCD_clearDisplay();
 			LCD_write(lcdTemp);
+			
+			
 		}
 		
 	}
@@ -69,9 +74,8 @@ void update() {
 int main() {
 	init();
 	__enable_irq();
-
+	
 	while(ultrasonicSensorNewDataAvailable == 0){}
-	//LED1_On();
 	while(1) {
 		update();
 		__WFI();

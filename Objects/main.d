@@ -17,4 +17,5 @@
 .\objects\main.o: Library/Serial.h
 .\objects\main.o: Library/MMA7455.h
 .\objects\main.o: Library/I2C.h
+.\objects\main.o: Library/PWM.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

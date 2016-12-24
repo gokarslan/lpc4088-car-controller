@@ -8,6 +8,8 @@
 #include "Library/Serial.h"
 
 #include <stdio.h>
+#define ULTRASONIC_THRESHOLD 10
+int lapCount = -1;
 void init() {
 	
 	MMA7455_Init();
@@ -15,6 +17,7 @@ void init() {
 	MMA7455_setMode(0x01);//2g
 	MMA7455_calibrate();
 	Serial_Init();
+	LCD_Init();
 	
 	Ultrasonic_Init();
 	Ultrasonic_Trigger_Timer_Init();
@@ -39,29 +42,26 @@ void update() {
 	int x=0;
 	int y=0;
 	int z=0;
-	char temp[20];
-	MMA7455_read(&x, &y, &z);
-	//sprintf(temp, "Distance:%d\r\n", ultrasonicSensorDistance);
-	sprintf(temp, "X: %d Y: %d Z: %d\r\n", x, y, z);
-	serialTransmitData = temp;
-	Serial_WriteData(*serialTransmitData++);
-	while(!serialTransmitCompleted);
-	/*if(ultrasonicSensorNewDataAvailable){
-		
-		
+	char serialTemp[20];
+	char lcdTemp[9];
+	if(ultrasonicSensorNewDataAvailable){
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
-		if(ultrasonicSensorDistance < 10){
-			//LCD_write("<10");
-			LED1_Off();
-			LED2_Off();
-		}else{
-			//LCD_write(">=10");
-			LED1_On();
-			LED2_On();
+		if(ultrasonicSensorDistance <= ULTRASONIC_THRESHOLD){
+			lapCount ++;
+			sprintf(lcdTemp, "LAP: %03d",lapCount);
+			LCD_clearDisplay();
+			LCD_write(lcdTemp);
 		}
 		
-	}*/
-	wait(100);
+	}
+	MMA7455_read(&x, &y, &z);
+	//sprintf(temp, "Distance:%d\r\n", ultrasonicSensorDistance);
+	sprintf(serialTemp, "X: %d Y: %d Z: %d\r\n", x, y, z);
+	serialTransmitData = serialTemp;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
+	
+	//wait(100);
 	
 
 }
@@ -69,12 +69,12 @@ void update() {
 int main() {
 	init();
 	__enable_irq();
-	
-	//while(ultrasonicSensorNewDataAvailable == 0){}
-	LED1_On();
+
+	while(ultrasonicSensorNewDataAvailable == 0){}
+	//LED1_On();
 	while(1) {
 		update();
-		//__WFI();
+		__WFI();
 	                                    }
 }
 

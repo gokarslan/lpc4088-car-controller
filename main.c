@@ -60,8 +60,10 @@ void update() {
 		
 	}
 	MMA7455_read(&x, &y, &z);
+	PWM_Write(x/45.0 * 1000.0);
 	//sprintf(temp, "Distance:%d\r\n", ultrasonicSensorDistance);
-	sprintf(serialTemp, "X: %d Y: %d Z: %d\r\n", x, y, z);
+	//sprintf(serialTemp, "X: %d Y: %d Z: %d\r\n", x, y, z);
+	sprintf(serialTemp, "%d - %0.3f\n", x, x/45.0 * 1000.0);
 	serialTransmitData = serialTemp;
 	Serial_WriteData(*serialTransmitData++);
 	while(!serialTransmitCompleted);

@@ -4,6 +4,9 @@
 #include "Library/MMA7455.h"
 #include "Library/PWM.h"
 #include <stdio.h>
+char speedDignosis[40];
+char accDignosis[40];
+uint8_t speedChanged = 0;
 void init() {
 	//Initialize, set mode of MMA7455 and calibrate
 	MMA7455_Init();
@@ -15,10 +18,16 @@ void init() {
 	PWM_Init();
 
 }
-void systemDiagnosis(char* message){
-	serialTransmitData = message;
+void systemDiagnosis(){
+	serialTransmitData = accDignosis;
 	Serial_WriteData(*serialTransmitData++);
 	while(!serialTransmitCompleted);
+	if(speedChanged == 1){
+		serialTransmitData = speedDignosis;
+		Serial_WriteData(*serialTransmitData++);
+		while(!serialTransmitCompleted);
+		speedChanged = 0;
+	}
 
 }
 
@@ -27,10 +36,9 @@ void updateSpeed(){
 	int y=0;
 	int z=0;
 	int dutyCycle = 0;
-	char speedDignosis[40];
+	
 	MMA7455_read(&x, &y, &z);
-	sprintf(speedDignosis, "MMA7455 is read(x,y,z): %d, %d, %d\r\n", x, y, z);
-	systemDiagnosis(speedDignosis);
+	sprintf(accDignosis, "MMA7455 is read(x,y,z): %d, %d, %d\r\n", x, y, z);
 	if(x < 0){
 		x = -1 * x;
 	}
@@ -38,7 +46,7 @@ void updateSpeed(){
 		dutyCycle = x * 1000 / 50;
 		PWM_Write(dutyCycle);
 		sprintf(speedDignosis, "Speed of Car is: %03d\r\n", dutyCycle);
-		systemDiagnosis(speedDignosis);
+		speedChanged = 1;
 	}else{
 		PWM_Write(0);
 	}
@@ -52,6 +60,7 @@ int main() {
 	__enable_irq();
 	while(1) {
 		updateSpeed();
+		systemDiagnosis();
 	                                    
 	}
 }

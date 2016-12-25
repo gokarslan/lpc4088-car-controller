@@ -10,77 +10,86 @@
 
 #include <stdio.h>
 #define ULTRASONIC_THRESHOLD 10
+
 int lapCount = -1;
+int isCarSeen = 0;
 void init() {
-	
+	//Initialize, set mode of MMA7455 and calibrate
 	MMA7455_Init();
-	//Write to Correct Mode to MMA7455
 	MMA7455_setMode(0x01);//2g
 	MMA7455_calibrate();
+	// Initialize serial communication for system diagnosis
 	Serial_Init();
+	// Initialize LCD
 	LCD_Init();
+	// Initialize PWM
 	PWM_Init();
-	
+	// Initialize Ultrasonic
 	Ultrasonic_Init();
 	Ultrasonic_Trigger_Timer_Init();
 	Ultrasonic_Capture_Timer_Init();
-	
-	LED1_Init();
-	LED2_Init();
-	LED3_Init();
-	LED4_Init();
-	
-	LED1_Off();
-	LED2_Off();
-	LED3_Off();
-	LED4_Off();
-	
 	Ultrasonic_Start_Trigger_Timer();
-	
 }
+void systemDiagnosis(char* message){
+	serialTransmitData = message;
+	Serial_WriteData(*serialTransmitData++);
+	while(!serialTransmitCompleted);
 
-
-void update() {
-	int x=0;
-	int y=0;
-	int z=0;
-	char serialTemp[20];
-	char lcdTemp[9];
-	PWM_Write(900);
+}
+void updateLCD(){
+	char lcdMessage[9];
+	char lcdDiagnosis[31];
 	if(ultrasonicSensorNewDataAvailable){
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
 		if(ultrasonicSensorDistance <= ULTRASONIC_THRESHOLD){
-			lapCount ++;
-			sprintf(lcdTemp, "LAP: %03d",lapCount);
-			LCD_clearDisplay();
-			LCD_write(lcdTemp);
-			
-			
+			if(isCarSeen == 0){
+				lapCount ++;
+				isCarSeen = 1;
+				sprintf(lcdMessage, "LAP: %03d",lapCount);
+				sprintf(lcdDiagnosis, "Lap count is updated: %03d\r\n", ultrasonicSensorDistance);
+				LCD_clearDisplay();
+				LCD_write(lcdMessage);
+				systemDiagnosis(lcdDiagnosis);
+			}
+		}else{
+			isCarSeen = 0;
 		}
-		
 	}
+}
+void updateSpeed(){
+	int x=0;
+	int y=0;
+	int z=0;
+	char speedDignosis[30];
 	MMA7455_read(&x, &y, &z);
-	PWM_Write(x/45.0 * 1000.0);
-	//sprintf(temp, "Distance:%d\r\n", ultrasonicSensorDistance);
-	//sprintf(serialTemp, "X: %d Y: %d Z: %d\r\n", x, y, z);
-	sprintf(serialTemp, "%d - %0.3f\n", x, x/45.0 * 1000.0);
-	serialTransmitData = serialTemp;
-	Serial_WriteData(*serialTransmitData++);
-	while(!serialTransmitCompleted);
-	
-	//wait(100);
+	if(x < 0){
+		x = -1 * x;
+	}
+	if(x >= 5){
+		PWM_Write(x * 1000 / 64);
+		sprintf(speedDignosis, "Car speed is updated: %03d\r\n", x);
+		systemDiagnosis(speedDignosis);
+	}
 	
 
+}
+	
+	
+	
+
+void update() {
+	updateLCD();
+	updateSpeed();
 }
 
 int main() {
 	init();
 	__enable_irq();
 	
-	while(ultrasonicSensorNewDataAvailable == 0){}
+	//while(ultrasonicSensorNewDataAvailable == 0){}
 	while(1) {
 		update();
-		__WFI();
+		//__WFI();
 	                                    }
 }
 

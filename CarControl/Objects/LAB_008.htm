@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\LAB_008.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\LAB_008.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Sun Dec 25 15:01:41 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Sun Dec 25 16:58:15 2016
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; init &rArr; MMA7455_calibrate &rArr; MMA7455_read &rArr; MMA7455_getStatus &rArr; I2C_Read &rArr; I2C_ReadData &rArr; I2C_Start
+main &rArr; updateSpeed &rArr; MMA7455_read &rArr; MMA7455_getStatus &rArr; I2C_Read &rArr; I2C_ReadData &rArr; I2C_Start
 <P>
 <H3>
 Mutually Recursive functions
@@ -542,7 +542,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[32]"></a>main</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = main &rArr; init &rArr; MMA7455_calibrate &rArr; MMA7455_read &rArr; MMA7455_getStatus &rArr; I2C_Read &rArr; I2C_ReadData &rArr; I2C_Start
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = main &rArr; updateSpeed &rArr; MMA7455_read &rArr; MMA7455_getStatus &rArr; I2C_Read &rArr; I2C_ReadData &rArr; I2C_Start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateSpeed
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
@@ -557,10 +557,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateSpeed
 </UL>
 
-<P><STRONG><a name="[59]"></a>updateSpeed</STRONG> (Thumb, 90 bytes, Stack size 56 bytes, main.o(i.updateSpeed))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = updateSpeed &rArr; MMA7455_read &rArr; MMA7455_getStatus &rArr; I2C_Read &rArr; I2C_ReadData &rArr; I2C_Start
+<P><STRONG><a name="[59]"></a>updateSpeed</STRONG> (Thumb, 118 bytes, Stack size 64 bytes, main.o(i.updateSpeed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = updateSpeed &rArr; MMA7455_read &rArr; MMA7455_getStatus &rArr; I2C_Read &rArr; I2C_ReadData &rArr; I2C_Start
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_Write
+<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_Write
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MMA7455_read
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemDiagnosis
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
@@ -570,6 +571,7 @@ Global Symbols
 
 <P><STRONG><a name="[47]"></a>wait</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, wait.o(i.wait))
 <BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MMA7455_calibrate
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateSpeed
 </UL>
 <P>
 <H3>

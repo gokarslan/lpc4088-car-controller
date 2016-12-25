@@ -4,7 +4,6 @@
 #include "Library/MMA7455.h"
 #include "Library/PWM.h"
 #include <stdio.h>
-
 void init() {
 	//Initialize, set mode of MMA7455 and calibrate
 	MMA7455_Init();
@@ -28,21 +27,23 @@ void updateSpeed(){
 	int y=0;
 	int z=0;
 	int dutyCycle = 0;
-	char speedDignosis[30];
+	char speedDignosis[40];
 	MMA7455_read(&x, &y, &z);
+	sprintf(speedDignosis, "MMA7455 is read(x,y,z): %d, %d, %d\r\n", x, y, z);
+	systemDiagnosis(speedDignosis);
 	if(x < 0){
 		x = -1 * x;
 	}
 	if(x >= 5){
 		dutyCycle = x * 1000 / 50;
 		PWM_Write(dutyCycle);
-		sprintf(speedDignosis, "Car speed is updated: %03d\r\n", dutyCycle);
+		sprintf(speedDignosis, "Speed of Car is: %03d\r\n", dutyCycle);
 		systemDiagnosis(speedDignosis);
 	}else{
 		PWM_Write(0);
 	}
 	
-
+	wait(100);
 }
 	
 

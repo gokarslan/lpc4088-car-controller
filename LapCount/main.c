@@ -9,8 +9,8 @@
 #define ULTRASONIC_MAX_THRESHOLD 10
 #define ULTRASONIC_MIN_THRESHOLD 1
 #define CAR_NOT_SEEN_MAX 40
-int lapCount = 0;
-int carNotSeen = 0;
+uint16_t lapCount = 0;
+uint16_t carNotSeen = 0;
 void init() {
 
 	// Initialize serial communication for system diagnosis
@@ -35,13 +35,18 @@ void updateLCD(){
 	char lcdDiagnosis[31];
 	if(ultrasonicSensorNewDataAvailable){
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
+		sprintf(lcdDiagnosis, "New distance read: %03d\r\n", ultrasonicSensorDistance);
+		systemDiagnosis(lcdDiagnosis);
 		if(ultrasonicSensorDistance <= ULTRASONIC_MAX_THRESHOLD && ultrasonicSensorDistance >= ULTRASONIC_MIN_THRESHOLD){
 			if(carNotSeen >= CAR_NOT_SEEN_MAX){
 				lapCount ++;
 				carNotSeen = 0;
-				sprintf(lcdMessage, "LAP: %03d",lapCount);
+				sprintf(lcdMessage, "%03d",lapCount);
 				sprintf(lcdDiagnosis, "Lap count is updated: %03d\r\n", lapCount);
-				LCD_clearDisplay();
+				//LCD_clearDisplay();
+				LCD_moveCursorLeft();
+				LCD_moveCursorLeft();
+				LCD_moveCursorLeft();
 				LCD_write(lcdMessage);
 				systemDiagnosis(lcdDiagnosis);
 			}

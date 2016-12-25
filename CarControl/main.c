@@ -10,7 +10,7 @@ void init() {
 	MMA7455_Init();
 	MMA7455_setMode(0x01);//2g
 	MMA7455_calibrate();
-	// Initialize serial communication for system diagnosis
+	// Initialize seraial communication for system diagnosis
 	Serial_Init();
 	// Initialize PWM
 	PWM_Init();
@@ -38,6 +38,8 @@ void updateSpeed(){
 		PWM_Write(dutyCycle);
 		sprintf(speedDignosis, "Car speed is updated: %03d\r\n", dutyCycle);
 		systemDiagnosis(speedDignosis);
+	}else{
+		PWM_Write(0);
 	}
 	
 

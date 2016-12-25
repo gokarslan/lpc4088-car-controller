@@ -6,16 +6,19 @@
 #include "Library/Serial.h"
 
 #include <stdio.h>
-#define ULTRASONIC_THRESHOLD 10
-
-int lapCount = -1;
-int isCarSeen = 0;
+#define ULTRASONIC_MAX_THRESHOLD 10
+#define ULTRASONIC_MIN_THRESHOLD 1
+#define CAR_NOT_SEEN_MAX 40
+int lapCount = 0;
+int carNotSeen = 0;
 void init() {
 
 	// Initialize serial communication for system diagnosis
 	Serial_Init();
 	// Initialize LCD
 	LCD_Init();
+	LCD_clearDisplay();
+	LCD_write("LAP: 000");
 	// Initialize Ultrasonic
 	Ultrasonic_Init();
 	Ultrasonic_Trigger_Timer_Init();
@@ -32,10 +35,10 @@ void updateLCD(){
 	char lcdDiagnosis[31];
 	if(ultrasonicSensorNewDataAvailable){
 		ultrasonicSensorDistance = ultrasonicSensorDuration/58;
-		if(ultrasonicSensorDistance <= ULTRASONIC_THRESHOLD){
-			if(isCarSeen == 0){
+		if(ultrasonicSensorDistance <= ULTRASONIC_MAX_THRESHOLD && ultrasonicSensorDistance >= ULTRASONIC_MIN_THRESHOLD){
+			if(carNotSeen >= CAR_NOT_SEEN_MAX){
 				lapCount ++;
-				isCarSeen = 1;
+				carNotSeen = 0;
 				sprintf(lcdMessage, "LAP: %03d",lapCount);
 				sprintf(lcdDiagnosis, "Lap count is updated: %03d\r\n", lapCount);
 				LCD_clearDisplay();
@@ -43,7 +46,9 @@ void updateLCD(){
 				systemDiagnosis(lcdDiagnosis);
 			}
 		}else{
-			isCarSeen = 0;
+			if(carNotSeen < CAR_NOT_SEEN_MAX){
+				carNotSeen++ ;
+			}
 		}
 	}
 }

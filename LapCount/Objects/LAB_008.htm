@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\LAB_008.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\LAB_008.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Sun Dec 25 14:53:30 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Sun Dec 25 15:24:53 2016
 <BR><P>
 <H3>Maximum Stack Usage =         72 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -326,6 +326,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLCD
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 </UL>
 
 <P><STRONG><a name="[3b]"></a>LCD_command</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, lcd.o(i.LCD_command))
@@ -393,6 +394,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLCD
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 </UL>
 
 <P><STRONG><a name="[4f]"></a>Serial_Init</STRONG> (Thumb, 240 bytes, Stack size 8 bytes, serial.o(i.Serial_Init))
@@ -479,7 +481,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[4e]"></a>init</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, main.o(i.init))
+<P><STRONG><a name="[4e]"></a>init</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, main.o(i.init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = init &rArr; LCD_Init &rArr; LCD_setCursorHome &rArr; LCD_command &rArr; LCD_toogle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ultrasonic_Trigger_Timer_Init
@@ -487,6 +489,8 @@ Global Symbols
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ultrasonic_Init
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ultrasonic_Capture_Timer_Init
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Serial_Init
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_write
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_clearDisplay
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -508,7 +512,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLCD
 </UL>
 
-<P><STRONG><a name="[54]"></a>updateLCD</STRONG> (Thumb, 108 bytes, Stack size 48 bytes, main.o(i.updateLCD))
+<P><STRONG><a name="[54]"></a>updateLCD</STRONG> (Thumb, 128 bytes, Stack size 48 bytes, main.o(i.updateLCD))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = updateLCD &rArr; LCD_write &rArr; LCD_data &rArr; LCD_toogle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_write
